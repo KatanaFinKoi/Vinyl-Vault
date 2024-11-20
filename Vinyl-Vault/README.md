@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# Vinyl Vault
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive vinyl collection tracker designed to help users organize and showcase their record collections. Vinyl Vault provides detailed record information such as the artist, album, release date, and more. This application leverages modern technologies and APIs to deliver an intuitive and seamless experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add and manage your vinyl collection effortlessly.
+- Display detailed record information including artist, album, release date, and more.
+- Integrates with the **Discogs API** for up-to-date record details.
+- Includes fun and unique features powered by the **Kanye.rest API**.
 
-## Expanding the ESLint configuration
+## Built With
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Vinyl Vault is developed using a robust and modern tech stack:
 
-- Configure the top-level `parserOptions` property like this:
+- **Node.js**: Backend development and API handling.
+- **JWT (JSON Web Tokens)**: User authentication and secure access.
+- **PostgreSQL**: Relational database for storing user and collection data.
+- **React**: Frontend framework for dynamic and responsive UI.
+- **TypeScript**: Ensuring type safety and reducing runtime errors.
+- **Bootstrap**: Styling and layout for a sleek and responsive design.
+- **Discogs API**: Fetching comprehensive vinyl record information.
+- **Kanye.rest API**: Adding a creative and fun twist with Kanye quotes.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Authors
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+This project was developed by the following team:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Liam Rayback  
+- Oscar Rendon  
+- Andrew Soper  
+- Fabricio Laboriel  
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Getting Started
+
+### Prerequisites
+
+- **Node.js** (v16 or later)  
+- **PostgreSQL** (v14 or later)  
+- An account for accessing the [Discogs API](https://www.discogs.com/developers).  
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/KatanaFinKoi/vinyl-vault.git
+   cd vinyl-vault
