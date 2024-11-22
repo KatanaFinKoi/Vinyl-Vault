@@ -1,5 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-
+import { useNavigate } from "react-router-dom";
 import Auth from '../utils/auth';
 import { login } from "../api/authAPI";
 
@@ -11,6 +11,8 @@ const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -31,6 +33,10 @@ const Login = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleCreateAccount = () => {
+    navigate('/register');
   };
 
   return (
@@ -54,6 +60,23 @@ const Login = () => {
         />
         <button type='submit' disabled={isLoading}>{isLoading? 'Logging in...': 'Submit'}</button>
       </form>
+
+      <div style={{ marginTop: '20px'}}>
+        <p>Don't have an account?</p>
+        <button
+         onClick={handleCreateAccount}
+         style={{
+           backgroundColor: 'transparent',
+           padding: '10px 20px',
+           border: 'none',
+            cursor: 'pointer',
+            color: 'blue',
+            borderRadius: '5px'
+         }}
+         >
+            Create Account
+         </button>
+      </div>
     </div>
     
   )
