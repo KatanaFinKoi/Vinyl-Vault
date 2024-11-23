@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const DISCOGS_API_URL = 'https://api.discogs.com';
+
 
 interface DiscogsSearchResponse {
     Pagination:{
@@ -10,6 +10,7 @@ interface DiscogsSearchResponse {
         per_page: number;
     };
     results: Array<{
+        id: number
         title: string;
         year: number;
         genre: string[];
@@ -20,12 +21,19 @@ interface DiscogsSearchResponse {
 
     }
 
-    const searchString = 'REM';
+   
 
-export const searchAlbums = async (): Promise<DiscogsSearchResponse | null> => {
+export const searchAlbums = async (searchString: string): Promise<DiscogsSearchResponse | null> => {
     console.log('discogs26')
+    
     try {
         const response = await axios.get(`https://api.discogs.com/database/search?q=${searchString}&key=BrAzjPpNVWZWLhFOlDNN&secret=hChyoEgFcxYSRLEKrHQCWnyPgiyHbDBT`, {
+            params: {
+                q: searchString,
+                type: 'release',
+                format: 'vinyl',
+                country: 'US',
+            },
             headers:{
             'Authorization': 'key=ZuzzsWKkrDGBmyKUebLuntWVuBuKHcUsGhxGhWbN',
             },
@@ -40,10 +48,9 @@ export const searchAlbums = async (): Promise<DiscogsSearchResponse | null> => {
 
 export const getAlbumDetails = async (albumId: number): Promise<any | null> => {
     try {
-        const response = await axios.get(`${DISCOGS_API_URL}/releases/${albumId}`, {
-            headers: {
-                'User-Agent': 'Vinyl-Vault/1.0', // Recommended for Discogs API
-                Authorization: `Discogs key=${process.env.DISCOGS_API_KEY}, secret=${process.env.DISCOGS_API_SECRET}`, // Required for authorization
+        const response = await axios.get(`https://api.discogs.com/releases/${albumId}?key=BrAzjPpNVWZWLhFOlDNN&secret=hChyoEgFcxYSRLEKrHQCWnyPgiyHbDBT`, {
+            headers: {              
+                'Authorization': 'key=ZuzzsWKkrDGBmyKUebLuntWVuBuKHcUsGhxGhWbN',
             },
         
     });
