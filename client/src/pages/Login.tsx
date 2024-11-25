@@ -36,7 +36,7 @@ const Login = () => {
   };
 
   const handleCreateAccount = () => {
-    navigate('/register');
+    navigate('/signUpPage');
   };
 
   return (

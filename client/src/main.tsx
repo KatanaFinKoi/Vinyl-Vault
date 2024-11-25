@@ -2,29 +2,30 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 
-import App from './App.tsx';
-import ErrorPage from './pages/ErrorPage.tsx';
-import Login from './pages/Login.tsx';
+import App from './App';
+import ErrorPage from './pages/ErrorPage';
+import Login from './pages/Login';
+import SignUp from './pages/signUpPage';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />, // Handles errors globally
     children: [
-      // {
-      //   index: true,
-      //   element: <Home />
-      // }, 
       {
-        path: '/login',
+        index: true, // Default page
         element: <Login />
+      },
+      {
+        path: "signUpPage",
+        element: <SignUp />
       }
     ]
   }
-])
+]);
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
 }
