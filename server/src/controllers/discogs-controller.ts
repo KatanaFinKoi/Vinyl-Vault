@@ -1,0 +1,40 @@
+
+import { Request, Response } from 'express';
+import { searchAlbums, getAlbumDetails } from '../models/discogs.js';
+
+console.log('discogs controller');
+
+export const searchAlbumsController = async (req: Request, res: Response) => {
+    console.log('searchAlbumsController7');
+    const { albumName } = req.query;
+
+    if (!albumName) {
+        res.status(400).json({ error: 'Must search album name' });
+        return;
+    }
+
+    const data = await searchAlbums();
+    if(data) {
+        res.status(200).json(data);
+    } else {
+        res.status(500).json({ error: 'Error searching albums' });
+    }
+}
+
+
+export const getAlbumDetailsController = async (req: Request, res: Response) => {
+    console.log('getAlbumDetailsController25');
+    const { albumId } = req.params;
+
+    if (!albumId) {
+        res.status(400).json({ error: 'Must provide album ID' });
+        return;
+    }
+
+    const data = await getAlbumDetails(parseInt(albumId));
+    if(data) {
+        res.status(200).json(data);
+    } else {
+        res.status(500).json({ error: 'Error getting album details' });
+    }
+}
