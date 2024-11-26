@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/home';
 import MyCollection from './pages/myCollection';
 import AlbumDetails from './pages/albumDetails';
+import Footer from './components/footer';
 import { Outlet } from 'react-router-dom';
 
 const Layout = () => (
@@ -17,6 +18,7 @@ const Layout = () => (
 
 function App() {
   return (
+    <div>
     <Routes>
       {/* Shared layout */}
       <Route path="/" element={<Layout />}>
@@ -28,8 +30,12 @@ function App() {
         <Route path="albumDetails" element={<AlbumDetails />} />
       </Route>
     </Routes>
+    <footer />
+    </div>
   );
 }
+
+
 
 export default App;
 
