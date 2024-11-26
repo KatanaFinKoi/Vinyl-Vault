@@ -8,12 +8,12 @@ export const searchAlbumsController = async (req: Request, res: Response) => {
     console.log('searchAlbumsController7');
     const { albumName } = req.query;
 
-    if (!albumName) {
+    if (!albumName || typeof albumName !=='string') {
         res.status(400).json({ error: 'Must search album name' });
         return;
     }
 
-    const data = await searchAlbums();
+    const data = await searchAlbums(albumName);
     if(data) {
         res.status(200).json(data);
     } else {
