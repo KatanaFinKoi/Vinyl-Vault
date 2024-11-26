@@ -1,5 +1,6 @@
-import { Album } from '../models/index.js'
+import { Album, User } from '../models/index.js'
 import { type Response, type Request } from 'express'
+
 
 export const saveAlbum = async (req: Request, res: Response) => {
     try {
@@ -33,3 +34,24 @@ export const deleteAlbum = async (req: Request, res: Response) => {
     }
 }
 
+export const getAlbumsForUser = async (req: Request, res: Response) => {
+     const userId = req.params.id
+    try {
+        const user = await User.findByPk(userId, {
+            include: [{model: Album, as: 'Albums'}]
+        });
+        if (!user) {
+            throw new Error(`User with ID ${userId} was not found`)
+        }
+        const albums = await Album.findAll({
+            where: { userId }
+        })
+        const userAlbums = albums.map(album => album.get({plain: true}))
+        res.json(userAlbums)
+    }
+    catch(error){
+        res.status(500).json({ message: 'Error pulling albums for user', error: error})
+
+
+    }
+}    

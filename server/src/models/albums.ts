@@ -1,7 +1,7 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
 import { User } from './user'
 
-interface AlbumAttributes {
+export interface AlbumAttributes {
     id: number;
     title: string;
     year: number;
