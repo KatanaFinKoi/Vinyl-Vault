@@ -30,7 +30,7 @@ function App() {
         <Route path="albumDetails" element={<AlbumDetails />} />
       </Route>
     </Routes>
-    <footer />
+    <Footer />
     </div>
   );
 }
