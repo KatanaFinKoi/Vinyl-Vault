@@ -28,7 +28,7 @@ const SignUp = () => {
         try {
             await signup(signUpData);
             // Redirect or show success message on successful sign-up
-            navigate('/login'); // Navigate to login page after successful sign-up
+            navigate('/'); // Navigate to login page after successful sign-up
         } catch (err: any) {
             setErrorMessage(err.message || 'Failed to create account');
             console.error('Failed to create account', err);

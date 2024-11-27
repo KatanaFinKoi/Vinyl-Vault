@@ -6,6 +6,8 @@ import App from './App';
 import ErrorPage from './pages/ErrorPage';
 import Login from './pages/Login';
 import SignUp from './pages/signUpPage';
+import Home from './pages/home';
+import MyCollection from './pages/myCollection'
 
 const router = createBrowserRouter([
   {
@@ -18,8 +20,16 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: "signUpPage",
+        path: "/signUpPage",
         element: <SignUp />
+      },
+      {
+        path: '/home',
+        element: <Home />
+      },
+      {
+        path: '/my-collection',
+        element: <MyCollection />
       }
     ]
   }
