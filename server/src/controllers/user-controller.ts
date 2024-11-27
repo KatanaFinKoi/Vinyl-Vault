@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { User } from '../models/user.js';
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 // GET /Users
@@ -36,8 +35,8 @@ export const getUserById = async (req: Request, res: Response) => {
 export const createUser = async (req: Request, res: Response) => {
   const { username, password } = req.body;
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({ username, password: hashedPassword });
+    
+    const newUser = await User.create({ username, password });
     
     const secretKey = process.env.JWT_SECRET_KEY || '';
     const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });

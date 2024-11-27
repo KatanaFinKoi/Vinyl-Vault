@@ -14,7 +14,11 @@ const Home = () => {
       <div className="flex flex-col sm:flex-row justify-around space-y-6 sm:space-y-0 sm:space-x-6">
         {/* Add Album Section */}
         <div className="flex flex-col items-center bg-gray-700 p-6 rounded">
-          <h2 className="text-white font-medium text-lg mb-4">Add an Album Manually</h2>
+            <Link 
+            to ="/search-album"
+            >
+              <h2 className="text-white font-medium text-lg mb-4">Add an Album Manually</h2>
+            </Link>
           {/* <AddAlbumForm /> */}
         </div>
 

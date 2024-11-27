@@ -9,6 +9,7 @@ import MyCollection from './pages/myCollection';
 import Footer from './components/footer';
 import { Outlet } from 'react-router-dom';
 import Deezer from './components/deezer';
+import SearchAlbum from './pages/albumDetails'
 
 const Layout = () => (
   <div className="container">
@@ -28,6 +29,7 @@ function App() {
         <Route path="signUpPage" element={<SignUp />} />
         <Route path="ErrorPage" element={<ErrorPage />} />
         <Route path ="my-collection" element={<MyCollection />} />
+        <Route path ="search-album" element={<SearchAlbum />} />
         <Route path="home" element={<Home />} />
         {/* <Route path="myCollection" element={<MyCollection />} /> */}
         {/* <Route path="albumDetails" element={<AlbumDetails />} /> */}

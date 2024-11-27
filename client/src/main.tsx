@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import SignUp from './pages/signUpPage';
 import Home from './pages/home';
 import MyCollection from './pages/myCollection'
+import SearchAlbum from './pages/albumDetails'
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,12 @@ const router = createBrowserRouter([
       {
         path: '/my-collection',
         element: <MyCollection />
+      },
+      {
+        path: '/search-album',
+        element: <SearchAlbum />
       }
+
     ]
   }
 ]);
