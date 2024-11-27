@@ -4,11 +4,13 @@ import Login from './pages/Login';
 import SignUp from './pages/signUpPage';
 import Navbar from './components/Navbar';
 import { Outlet } from 'react-router-dom';
+import Deezer from './components/deezer';
 
 const Layout = () => (
   <div className="container">
     <Navbar /> {/* Navbar stays on all pages */}
     <Outlet /> {/* Renders the matched child route's element */}
+    <Deezer />
   </div>
 );
 
