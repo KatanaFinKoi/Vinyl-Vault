@@ -1,9 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AddAlbumForm from '../components/AddAlbumForm';
 import SpotifySearch from '../components/SpotifySearch';
 
 const Home = () => {
+  const navigate = useNavigate();
+  
+    const goToCollection = () => {
+      navigate('/my-collection');
+    };
+
   return (
     <div className="mx-auto w-fit bg-gray-800 text-center rounded-lg p-6">
       <h1 className="text-white font-bold text-3xl py-4">Welcome to Vinyl Vault</h1>
