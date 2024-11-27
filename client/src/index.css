@@ -262,6 +262,11 @@ tbody tr:nth-child(odd) {
 }
 
 .VinylLogo {
-  width: 100px;
+  width: 75px;
+  height: auto;
+}
+
+.VinylVaultLogo {
+  width: 200px;
   height: auto;
 }
