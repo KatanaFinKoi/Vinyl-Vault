@@ -2,11 +2,12 @@
 import { Link } from 'react-router-dom';
 // import AddAlbumForm from '../components/AddAlbumForm';
 // import SpotifySearch from '../components/SpotifySearch';
+import VinylVaultLogo from '../assets/VinylVaultLogo.png';
 
 const Home = () => {
   return (
     <div className="mx-auto w-fit bg-gray-800 text-center rounded-lg p-6">
-      <h1 className="text-white font-bold text-3xl py-4">Welcome to Vinyl Vault</h1>
+      <h1 className="text-white font-bold text-3xl py-4"><img src={VinylVaultLogo} className="VinylVaultLogo"/></h1>
       <p className="text-white text-lg mb-6">
         Organize and showcase your record collection in one place.
       </p>
