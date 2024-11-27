@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import auth from '../utils/auth';
+import VinylLogo from '../assets/VinylLogo.png';
 
 const Navbar = () => {
   const [ loginCheck, setLoginCheck ] = useState(false);
@@ -19,7 +20,7 @@ const Navbar = () => {
   return (
     <div className='nav'>
       <div className='nav-title'>
-        <Link to='/'>Vinyl Vault</Link>
+        <Link to='/'><img src={VinylLogo} className="VinylLogo"/></Link>
       </div>
       <ul>
       {
