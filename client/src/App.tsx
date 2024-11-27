@@ -8,14 +8,12 @@ import MyCollection from './pages/myCollection';
 // import AlbumDetails from './pages/albumDetails';
 import Footer from './components/footer';
 import { Outlet } from 'react-router-dom';
-import Deezer from './components/deezer';
 import SearchAlbum from './pages/albumDetails'
 
 const Layout = () => (
   <div className="container">
     <Navbar /> {/* Navbar stays on all pages */}
     <Outlet /> {/* Renders the matched child route's element */}
-    <Deezer />
   </div>
 );
 

@@ -1,39 +1,53 @@
-
 import { useState } from 'react';
-import { searchAlbums } from '../api/discogsAPI'
-
-
+import { searchAlbums, addAlbumToDatabase } from '../api/discogsAPI';
+import Deezer from '../components/deezer';
 
 const AlbumSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [albums, setAlbums] = useState([]);
-  const [page, setPage] = useState(1);
-  const [error, setError] =useState('')
+  const [currentAlbumIndex, setCurrentAlbumIndex] = useState(0);
+  const [error, setError] = useState('');
 
   const handleSearch = async () => {
     try {
-      const data = await searchAlbums(searchTerm, page);
-      console.log('API response:', data)
+      const data = await searchAlbums(searchTerm);
+      console.log('API response:', data);
       if (data && data.results) {
         setAlbums(data.results);
+        setCurrentAlbumIndex(0); // Reset to the first album
       } else {
         setError('No results found');
       }
       
     } catch (error) {
       console.error('Error searching albums:', error);
-      setError('Error searching albums')
+      setError('Error searching albums');
     }
   };
 
-  const handleNextPage = () => {
-    setPage((prevPage) => prevPage +1);
-    handleSearch();
+  const handleNextAlbum = () => {
+    if (currentAlbumIndex < albums.length - 1) {
+      setCurrentAlbumIndex((prevIndex) => prevIndex + 1);
+    }
   };
 
-  const handlePrevPage = () => {
-    setPage((prevPage) => Math.max(prevPage -1, 1))
-  handleSearch()
+  const handlePrevAlbum = () => {
+    if (currentAlbumIndex > 0) {
+      setCurrentAlbumIndex((prevIndex) => prevIndex - 1);
+    }
+  };
+
+  const handleAddAlbum = async () => {
+    const albumToAdd = albums[currentAlbumIndex];
+    if (albumToAdd) {
+      try {
+        await addAlbumToDatabase(albumToAdd); // Call the function to add the album to the database
+        alert('Album added successfully!');
+      } catch (error) {
+        console.error('Error adding album to database:', error);
+        alert('Error adding album to database');
+      }
+    }
   };
 
   return (
@@ -45,29 +59,32 @@ const AlbumSearch = () => {
         placeholder="Search for an album"
       />
       <button onClick={handleSearch}>Search</button>
-      {error && <p style={{colr: 'red'}}> {error}</p>}
-      
+      {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <div>
-        {albums.map((album) => (
-          <div key={album.id}>
-            <h3>{album.title}</h3>
-            <p>{album.year}</p>
-            <p>{album.genre.join(', ')}</p>
-            <p>{album.label.join(', ')}</p>
-            <img src={album.cover_image} alt={album.title} />
+        {albums.length > 0 && (
+          <div key={albums[currentAlbumIndex].id}>
+            <h3>{albums[currentAlbumIndex].title}</h3>
+            <p>{albums[currentAlbumIndex].year}</p>
+            <p>{albums[currentAlbumIndex].genre.join(', ')}</p>
+            <p>{albums[currentAlbumIndex].label.join(', ')}</p>
+            <img src={albums[currentAlbumIndex].cover_image} alt={albums[currentAlbumIndex].title} />
           </div>
-        ))}
+        )}
       </div>
 
-      <button onClick={handlePrevPage} disabled={page === 1}>
+      <button onClick={handlePrevAlbum} disabled={currentAlbumIndex === 0}>
         Previous
       </button>
-      <button onClick={handleNextPage}>Next</button>
+      <button onClick={handleNextAlbum} disabled={currentAlbumIndex >= albums.length - 1}>
+        Next
+      </button>
+      <button onClick={handleAddAlbum} disabled={albums.length === 0}>
+        Add Album
+      </button>
+      <Deezer />
     </div>
   );
 };
 
 export default AlbumSearch;
-
-
