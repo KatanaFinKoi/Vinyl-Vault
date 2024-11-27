@@ -1,4 +1,4 @@
-import { saveAlbum, deleteAlbum, getAlbumsForUser } from '../../controllers/album-controller.js'
+import { saveAlbum, deleteAlbum, getAlbumsForUser} from '../../controllers/album-controller.js'
 import express from 'express'
 
 const router = express.Router()
