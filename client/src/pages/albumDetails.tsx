@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CollectionContext } from '../context/CollectionContext';
 

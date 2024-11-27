@@ -1,7 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
-import AddAlbumForm from '../components/AddAlbumForm';
-import SpotifySearch from '../components/SpotifySearch';
+// import AddAlbumForm from '../components/AddAlbumForm';
+// import SpotifySearch from '../components/SpotifySearch';
 
 const Home = () => {
   return (
@@ -14,13 +14,13 @@ const Home = () => {
         {/* Add Album Section */}
         <div className="flex flex-col items-center bg-gray-700 p-6 rounded">
           <h2 className="text-white font-medium text-lg mb-4">Add an Album Manually</h2>
-          <AddAlbumForm />
+          {/* <AddAlbumForm /> */}
         </div>
 
         {/* Spotify Search Section */}
         <div className="flex flex-col items-center bg-gray-700 p-6 rounded">
           <h2 className="text-white font-medium text-lg mb-4">Search for an Album on Spotify</h2>
-          <SpotifySearch />
+          {/* <SpotifySearch /> */}
         </div>
       </div>
 
