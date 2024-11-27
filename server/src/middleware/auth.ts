@@ -8,6 +8,8 @@ interface JwtPayload {
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
 
+  console.log('authHeader: ', authHeader);
+
   if (authHeader) {
     const token = authHeader.split(' ')[1];
 
@@ -23,6 +25,7 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     });
   }
     else {
+      console.error('No token provided');
       res.sendStatus(401);
     }
 
