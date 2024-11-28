@@ -39,7 +39,7 @@ export const createUser = async (req: Request, res: Response) => {
     const newUser = await User.create({ username, password });
     
     const secretKey = process.env.JWT_SECRET_KEY || '';
-    const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ id: newUser.id,username: newUser.username }, secretKey, { expiresIn: '1h' });
 
     return res.status(201).json({ user: newUser, token});
   } catch (error) {
@@ -82,3 +82,5 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
