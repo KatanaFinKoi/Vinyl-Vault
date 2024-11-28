@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Auth from '../utils/auth'
 
 interface AlbumData {
     id: number;
@@ -31,13 +32,21 @@ const searchAlbums = async (searchString: string, page: number = 1) => {
 
 async function addAlbumToDatabase(album: AlbumData) {
     try {
+        const token = Auth.getToken();
+        const profile = Auth.getProfile();
+        const userId = profile.UserId;   
+        const albumWithUserId = {...album, userId };
+        
         const response = await fetch('/api/albums', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify(album),
+            body: JSON.stringify(albumWithUserId),
+            
         });
+        
 
         if (!response.ok) {
             throw new Error('Network response was not ok');

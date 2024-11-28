@@ -33,6 +33,8 @@ export const searchAlbums = async (searchString: string): Promise<DiscogsSearchR
                 type: 'release',
                 format: 'vinyl',
                 country: 'US',
+                
+                
             },
             headers:{
             'Authorization': 'key=ZuzzsWKkrDGBmyKUebLuntWVuBuKHcUsGhxGhWbN',
