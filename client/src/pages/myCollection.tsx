@@ -1,60 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import Auth from '../utils/auth';
+import { useNavigate } from 'react-router-dom'
+import { fetchUserAlbums, Album} from '../api/albumAPI'
 
-interface Album {
-    id: number;
-    title: string;
-    year: number;
-    genre: string;
-    label: string;
-    cover_image: string;
-}
 
 const MyCollection: React.FC = () => {
     const [albums, setAlbums] = useState<Album[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchUserAlbums = async () => {
+        const fetchAlbums = async () => {
             try {
-                const token = Auth.getToken();
-                const profile = Auth.getProfile();
-                const userId = profile.UserId;
-        
-                const response = await fetch(`/api/albums/${userId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-        
-                if (!response.ok) {
-                    throw new Error('Failed to fetch albums');
-                }
-        
-                // Check if the response is JSON
-                const contentType = response.headers.get('Content-Type');
-                let data;
-                if (contentType && contentType.includes('application/json')) {
-                    data = await response.json(); // Parse as JSON if it's JSON
-                } else {
-                    const text = await response.text(); // Otherwise, treat it as plain text (e.g., error page)
-                    console.log('Unexpected response:', text); // Log the response text
-                    throw new Error('Unexpected response format');
-                }
-        
+                const data = await fetchUserAlbums();
                 setAlbums(data);
-                setIsLoading(false);
-            } catch (err) {
-                setError(err instanceof Error ? err.message : 'An unknown error occurred');
-                setIsLoading(false);
+                setIsLoading(false)
+            } catch (error) {
+                setError('Failed to fetch albums')
             }
-        };
-
-        fetchUserAlbums();
+        }
+        fetchAlbums();
     }, []);
+
+    const handleImageClick = (albumId: number) => {
+        navigate(`/album-details/${albumId}`);
+    };
+
 
     if (isLoading) return <div>Loading your collection...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -72,13 +43,9 @@ const MyCollection: React.FC = () => {
                                 src={album.cover_image} 
                                 alt={`Cover of ${album.title}`} 
                                 className="album-cover"
-                            />
-                            <div className="album-details">
-                                <h3>{album.title}</h3>
-                                <p>{album.year} | {album.genre}</p>
-                                <p>{album.label}</p>
-                            </div>
-                        </div>
+                                onClick={() => handleImageClick(album.id)}
+                            />                     
+                        </div>                      
                     ))}
                 </div>
             )}

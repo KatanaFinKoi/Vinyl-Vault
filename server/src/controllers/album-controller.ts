@@ -79,4 +79,18 @@ export const getAlbumsForUser = async (req: Request, res: Response) => {
 
 
     }
-}    
+};
+
+export const getAlbumById = async (req: Request, res: Response): Promise<Response> => {
+    const { albumId } = req.params;
+
+    try {
+        const album = await Album.findByPk(albumId);
+        if (!album) {
+            return res.status(404).json({ message: 'Album not found' });
+        }
+        return res.json(album);
+    } catch (error: any) {
+       return res.status(500).json({ message: error.message });
+    }
+};
