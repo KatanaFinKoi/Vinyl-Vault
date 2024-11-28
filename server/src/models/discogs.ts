@@ -27,7 +27,7 @@ export const searchAlbums = async (searchString: string): Promise<DiscogsSearchR
     console.log('discogs26')
     
     try {
-        const response = await axios.get(`https://api.discogs.com/database/search?q=${searchString}&key=BrAzjPpNVWZWLhFOlDNN&secret=hChyoEgFcxYSRLEKrHQCWnyPgiyHbDBT`, {
+        const response = await axios.get(`https://api.discogs.com/database/search?q=${searchString}&key=${process.env.DISCOGS_CONSUMER_KEY}&secret=${process.env.DISCOGS_API_SECRET}`, {
             params: {
                 q: searchString,
                 type: 'release',
@@ -37,7 +37,7 @@ export const searchAlbums = async (searchString: string): Promise<DiscogsSearchR
                 
             },
             headers:{
-            'Authorization': 'key=ZuzzsWKkrDGBmyKUebLuntWVuBuKHcUsGhxGhWbN',
+            'Authorization': `key=${process.env.DISCOGS_API_KEY}}`,
             },
         });
         
@@ -50,9 +50,9 @@ export const searchAlbums = async (searchString: string): Promise<DiscogsSearchR
 
 export const getAlbumDetails = async (albumId: number): Promise<any | null> => {
     try {
-        const response = await axios.get(`https://api.discogs.com/releases/${albumId}?key=BrAzjPpNVWZWLhFOlDNN&secret=hChyoEgFcxYSRLEKrHQCWnyPgiyHbDBT`, {
+        const response = await axios.get(`https://api.discogs.com/releases/${albumId}?key=${process.env.DISCOGS_CONSUMER_KEY}&secret=${process.env.DISCOGS_API_SECRET}`, {
             headers: {              
-                'Authorization': 'key=ZuzzsWKkrDGBmyKUebLuntWVuBuKHcUsGhxGhWbN',
+                'Authorization': `key=${process.env.DISCOGS_API_KEY}}`,
             },
         
     });
