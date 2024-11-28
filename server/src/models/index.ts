@@ -3,6 +3,7 @@ dotenv.config();
 
 import { Sequelize } from 'sequelize';
 import { UserFactory } from './user.js';
+import { AlbumFactory } from './albums.js'
 
 const sequelize = process.env.DB_URL
   ? new Sequelize(process.env.DB_URL)
@@ -15,6 +16,10 @@ const sequelize = process.env.DB_URL
     });
 
 const User = UserFactory(sequelize);
+const Album = AlbumFactory(sequelize)
+
+User.hasMany(Album, { foreignKey: 'userId' });
+Album.belongsTo(User, { foreignKey: 'userId' });
 
 
-export { sequelize, User };
+export { sequelize, User, Album };

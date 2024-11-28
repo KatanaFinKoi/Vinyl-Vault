@@ -1,20 +1,56 @@
-import React, { useContext } from 'react';
-import { CollectionContext } from '../context/CollectionContext';
-import CollectionGrid from '../components/CollectionGrid';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { fetchUserAlbums, Album} from '../api/albumAPI'
 
-const MyCollection = () => {
-  const { albums } = useContext(CollectionContext);
 
-  return (
-    <div className="container mx-auto p-6 bg-gray-800 text-white rounded-lg">
-      <h1 className="text-3xl font-bold mb-6">My Record Collection</h1>
-      {albums.length > 0 ? (
-        <CollectionGrid />
-      ) : (
-        <p className="text-lg">Your collection is empty. Start adding albums!</p>
-      )}
-    </div>
-  );
+const MyCollection: React.FC = () => {
+    const [albums, setAlbums] = useState<Album[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchAlbums = async () => {
+            try {
+                const data = await fetchUserAlbums();
+                setAlbums(data);
+                setIsLoading(false)
+            } catch (error) {
+                setError('Failed to fetch albums')
+            }
+        }
+        fetchAlbums();
+    }, []);
+
+    const handleImageClick = (albumId: number) => {
+        navigate(`/album-details/${albumId}`);
+    };
+
+
+    if (isLoading) return <div>Loading your collection...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+    return (
+        <div className="my-collection">
+            <h2>My Album Collection</h2>
+            {albums.length === 0 ? (
+                <p>No albums in your collection yet.</p>
+            ) : (
+                <div className="album-grid">
+                    {albums.map(album => (
+                        <div key={album.id} className="album-card">
+                            <img 
+                                src={album.cover_image} 
+                                alt={`Cover of ${album.title}`} 
+                                className="album-cover"
+                                onClick={() => handleImageClick(album.id)}
+                            />                     
+                        </div>                      
+                    ))}
+                </div>
+            )}
+        </div>
+    );
 };
 
 export default MyCollection;

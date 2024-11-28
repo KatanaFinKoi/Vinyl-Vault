@@ -27,6 +27,7 @@ const Login = () => {
     try {
       const data = await login(loginData);
       Auth.login(data.token);
+      navigate('/home');
     } catch (err: any) {
       setErrorMessage(err || 'Username or password is incorrect');
       console.error('Failed to login', err);

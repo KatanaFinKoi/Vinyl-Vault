@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { User } from '../models/user.js';
-import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 // GET /Users
 export const getAllUsers = async (_req: Request, res: Response) => {
@@ -35,11 +35,16 @@ export const getUserById = async (req: Request, res: Response) => {
 export const createUser = async (req: Request, res: Response) => {
   const { username, password } = req.body;
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({ username, password: hashedPassword });
-    res.status(201).json(newUser);
-  } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    
+    const newUser = await User.create({ username, password });
+    
+    const secretKey = process.env.JWT_SECRET_KEY || '';
+    const token = jwt.sign({ id: newUser.id,username: newUser.username }, secretKey, { expiresIn: '1h' });
+
+    return res.status(201).json({ user: newUser, token});
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Failed to create account'})
   }
 };
 
@@ -77,3 +82,5 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
