@@ -1,90 +1,54 @@
-import { useState } from 'react';
-import { searchAlbums, addAlbumToDatabase } from '../api/discogsAPI';
-import Deezer from '../components/deezer';
+import { useState, useEffect } from 'react';
+import {useParams, useNavigate } from 'react-router-dom';
+import { deleteAlbum, fetchAlbumById, Album } from '../api/albumAPI';
 
-const AlbumSearch = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [albums, setAlbums] = useState([]);
-  const [currentAlbumIndex, setCurrentAlbumIndex] = useState(0);
-  const [error, setError] = useState('');
 
-  const handleSearch = async () => {
-    try {
-      const data = await searchAlbums(searchTerm);
-      console.log('API response:', data);
-      if (data && data.results) {
-        setAlbums(data.results);
-        setCurrentAlbumIndex(0); // Reset to the first album
-      } else {
-        setError('No results found');
-      }
-      
-    } catch (error) {
-      console.error('Error searching albums:', error);
-      setError('Error searching albums');
-    }
-  };
+const AlbumDetails = () => {
+    const { albumId } = useParams<{ albumId: string}>();
+    const navigate = useNavigate();
+    const [album, setAlbum] = useState<Album | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
-  const handleNextAlbum = () => {
-    if (currentAlbumIndex < albums.length - 1) {
-      setCurrentAlbumIndex((prevIndex) => prevIndex + 1);
-    }
-  };
+    useEffect(() => {
+        const fetchAlbumDetail = async () => {
+            try {
+                const data = await fetchAlbumById(albumId!);
+                setAlbum(data);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'An unknown error occurred');
+            }
+        };
 
-  const handlePrevAlbum = () => {
-    if (currentAlbumIndex > 0) {
-      setCurrentAlbumIndex((prevIndex) => prevIndex - 1);
-    }
-  };
+        fetchAlbumDetail();
+    }, [albumId]);
 
-  const handleAddAlbum = async () => {
-    const albumToAdd = albums[currentAlbumIndex];
-    if (albumToAdd) {
-      try {
-        await addAlbumToDatabase(albumToAdd); // Call the function to add the album to the database
-        alert('Album added successfully!');
-      } catch (error) {
-        console.error('Error adding album to database:', error);
-        alert('Error adding album to database');
-      }
-    }
-  };
+    const handleDelete = async () => {
+        try {
+            await deleteAlbum(Number(albumId));
+            navigate('/my-collection');
+        } catch (err) {
+            setError(err instanceof Error ? err.message: 'An unknown error occured')
+        }
+    };
 
-  return (
-    <div>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search for an album"
-      />
-      <button onClick={handleSearch}>Search</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    if (error) return <div>Error: {error}</div>
+    if (!album) return <div> Loading album details....</div>
 
-      <div>
-        {albums.length > 0 && (
-          <div key={albums[currentAlbumIndex].id}>
-            <h3>{albums[currentAlbumIndex].title}</h3>
-            <p>{albums[currentAlbumIndex].year}</p>
-            <p>{albums[currentAlbumIndex].genre.join(', ')}</p>
-            <p>{albums[currentAlbumIndex].label.join(', ')}</p>
-            <img src={albums[currentAlbumIndex].cover_image} alt={albums[currentAlbumIndex].title} />
-          </div>
-        )}
-      </div>
-
-      <button onClick={handlePrevAlbum} disabled={currentAlbumIndex === 0}>
-        Previous
-      </button>
-      <button onClick={handleNextAlbum} disabled={currentAlbumIndex >= albums.length - 1}>
-        Next
-      </button>
-      <button onClick={handleAddAlbum} disabled={albums.length === 0}>
-        Add Album
-      </button>
-      <Deezer />
-    </div>
-  );
-};
-
-export default AlbumSearch;
+    return (
+        <div className="album-details-page">
+            <img
+                src={album.cover_image}
+                alt={`Cover of ${album.title}`}
+                className="album-cover"
+            />
+            <h2>{album.title}</h2>
+            <p>Released Year: {album.year}</p>
+            <p>Genre: {album.genre}</p>
+            <p>Label: {album.label}</p>
+            <button onClick={handleDelete} className="delete-button">
+                Delete Album
+            </button>
+        </div>    
+    );
+}
+export default AlbumDetails;
