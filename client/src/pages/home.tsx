@@ -28,12 +28,6 @@ const Home = () => {
             </Link>
           {/* <AddAlbumForm /> */}
         </div>
-
-        {/* Spotify Search Section */}
-        <div className="flex flex-col items-center bg-gray-700 p-6 rounded">
-          <h2 className="text-white font-medium text-lg mb-4">Search for an Album on Spotify</h2>
-          {/* <SpotifySearch /> */}
-        </div>
       </div>
 
       <div className="mt-6">

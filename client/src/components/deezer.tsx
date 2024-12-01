@@ -1,55 +1,60 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
-const Deezer: React.FC = () => {
-    const [albumId, setAlbumId] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
-    const albumTitle = 'Abbey Road'; // Example title, can be dynamically set or passed as props
-    const fallbackAlbumId = '90799'; // A fallback album ID in case Deezer search fails
+interface DeezerPlayerProps {
+  albumTitle: string;
+}
 
-    useEffect(() => {
-        const fetchAlbumId = async () => {
-            try {
-                const response = await axios.get('/get-album-id', {
-                    params: { title: albumTitle }, // Pass the album title as a query parameter
-                });
+const DeezerPlayer: React.FC<DeezerPlayerProps> = ({ albumTitle }) => {
+  const [deezerUrl, setDeezerUrl] = useState<string | null>(null);
+  const [error, setError] = useState<string>('');
 
-                if (response.data.albumId) {
-                    setAlbumId(response.data.albumId);
-                } else {
-                    console.log('Album not found on Deezer');
-                    setAlbumId(fallbackAlbumId); // Use fallback if not found
-                }
-            } catch (error) {
-                console.error('Error fetching album ID:', error);
-                setAlbumId(fallbackAlbumId); // Use fallback on error
-            } finally {
-                setLoading(false); // Mark loading as complete
-            }
-        };
+  useEffect(() => {
+    if (albumTitle) {
+      const fetchAlbumId = async () => {
+        try {
+          // Search for the album by title using Deezer API
+          const response = await fetch(`/api/deezer/album/${albumTitle}`);
+          const data = await response.json();
 
-        fetchAlbumId();
-    }, [albumTitle]); // Dependency ensures this runs when the album title changes
+          if (data && data.data.length > 0) {
+            // Get the first result (or handle more results if needed)
+            const albumId = data.data[0].id;
+            console.log('Album ID:', albumId);
+            const embedUrl = `https://widget.deezer.com/widget/dark/album/${albumId}`;
+            setDeezerUrl(embedUrl);
+          } else {
+            setError('Album not found');
+          }
+        } catch (error) {
+          setError('Error fetching album data');
+          console.error('Error fetching album data:', error);
+        }
+      };
 
-    if (loading) {
-        return <p>Loading album player...</p>;
+      fetchAlbumId();
     }
+  }, [albumTitle]);
 
-    return (
-        <div>
-            <h3>Preview your album!</h3>
-            {albumId ? (
-                <iframe
-                    title="Deezer album player"
-                    width="700"
-                    height="380"
-                    src={`https://widget.deezer.com/widget/auto/album/${albumId}`}
-                ></iframe>
-            ) : (
-                <p>Album not available</p>
-            )}
-        </div>
-    );
+  return (
+    <div style={{ marginTop: '20px' }}>
+      <h2 style={{ marginBottom: '20px' }}>Preview Your Album!</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {deezerUrl ? (
+        <iframe
+          title="Deezer Player"
+          src={deezerUrl}
+          width="100%"
+          height="300"
+          frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media"
+          allowFullScreen
+          style={{ backgroundColor: 'transparent' }}
+        ></iframe>
+      ) : (
+        <p>Loading player...</p>
+      )}
+    </div>
+  );
 };
 
-export default Deezer;
+export default DeezerPlayer;

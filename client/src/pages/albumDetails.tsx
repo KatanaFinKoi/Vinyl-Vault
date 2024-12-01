@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import {useParams, useNavigate } from 'react-router-dom';
 import { deleteAlbum, fetchAlbumById, Album } from '../api/albumAPI';
+import DeezerPlayer from '../components/deezer';
 
 
 const AlbumDetails = () => {
@@ -48,6 +49,7 @@ const AlbumDetails = () => {
             <button onClick={handleDelete} className="delete-button">
                 Delete Album
             </button>
+            <DeezerPlayer albumTitle={album.title} />
         </div>    
     );
 }
