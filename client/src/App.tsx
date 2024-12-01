@@ -27,6 +27,8 @@ function App() {
   useEffect(() => {
     if (auth.loggedIn()) {
       navigate('/home'); // Redirect to /home
+    } else {
+      navigate('/'); // Redirect to login page
     }
   }, [navigate]);
 
