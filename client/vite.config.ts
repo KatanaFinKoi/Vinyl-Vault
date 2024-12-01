@@ -25,7 +25,13 @@ export default defineConfig({
         target: 'http://localhost:3001',
         changeOrigin: true,
         secure: false
-      }
-    },
+      },
+      '/api/deezer': {
+        target: 'https://api.deezer.com', // Deezer's API
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/api\/deezer/, '') // Remove `/api/deezer` prefix in the actual request
+    }
+  }
   },
 });

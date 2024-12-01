@@ -29,15 +29,30 @@ const Navbar = () => {
 
   return (
     <div className='nav'>
-      <div className='nav-title'>
+     <div className="nav-title">
         {/* Vinyl Logo as the home button */}
-        <img 
-          src={VinylLogo} 
-          className='VinylLogo' 
-          alt='Vinyl Logo' 
-          style={{ cursor: 'pointer' }} 
-          onClick={handleLogoClick} 
+        <img
+          src={VinylLogo}
+          className="VinylLogo"
+          alt="Vinyl Logo"
+          style={{ cursor: 'pointer' }}
+          onClick={handleLogoClick}
         />
+        {/* Navigation buttons next to the logo */}
+        {loginCheck && (
+          <div className="nav-buttons" style={{ display: 'inline-block', marginLeft: '20px' }}>
+            <button
+              type="button"
+              style={{ marginRight: '10px' }}
+              onClick={() => navigate('/search-album')}
+            >
+              Add Album
+            </button>
+            <button type="button" onClick={() => navigate('/my-collection')}>
+              Collection
+            </button>
+          </div>
+        )}
       </div>
       <ul>
         {!loginCheck ? (

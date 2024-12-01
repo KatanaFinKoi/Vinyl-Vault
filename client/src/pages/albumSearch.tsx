@@ -1,27 +1,26 @@
-import { useState } from 'react';
-import { searchAlbums, addAlbumToDatabase } from '../api/discogsAPI';
-import Deezer from '../components/deezer';
 
-const AlbumSearch = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [albums, setAlbums] = useState([]);
-  const [currentAlbumIndex, setCurrentAlbumIndex] = useState(0);
-  const [error, setError] = useState('');
+import { useState } from 'react';
+import { searchAlbums, addAlbumToDatabase } from '../api/discogsAPI'; // Assuming you have a function to search albums
+import DeezerPlayer from '../components/deezer';
+
+const AlbumSearch: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [albums, setAlbums] = useState<any[]>([]);
+  const [currentAlbumIndex, setCurrentAlbumIndex] = useState<number>(0);
+  const [error, setError] = useState<string>('');
 
   const handleSearch = async () => {
     try {
-      const data = await searchAlbums(searchTerm);
-      console.log('API response:', data);
+      const data = await searchAlbums(searchTerm); // Assuming this is a function to search albums
       if (data && data.results) {
         setAlbums(data.results);
-        setCurrentAlbumIndex(0); // Reset to the first album
+        setCurrentAlbumIndex(0); // Reset to first album
       } else {
         setError('No results found');
       }
-      
     } catch (error) {
-      console.error('Error searching albums:', error);
       setError('Error searching albums');
+      console.error('Error searching albums:', error);
     }
   };
 
@@ -41,7 +40,7 @@ const AlbumSearch = () => {
     const albumToAdd = albums[currentAlbumIndex];
     if (albumToAdd) {
       try {
-        await addAlbumToDatabase(albumToAdd); // Call the function to add the album to the database
+        await addAlbumToDatabase(albumToAdd); // Call to add album to the database
         alert('Album added successfully!');
       } catch (error) {
         console.error('Error adding album to database:', error);
@@ -82,7 +81,9 @@ const AlbumSearch = () => {
       <button onClick={handleAddAlbum} disabled={albums.length === 0}>
         Add Album
       </button>
-      <Deezer />
+
+      {/* Pass the current album's title to the DeezerPlayer component */}
+      <DeezerPlayer albumTitle={albums[currentAlbumIndex]?.title || ''} />
     </div>
   );
 };
