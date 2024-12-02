@@ -1,0 +1,49 @@
+/* Footer container */
+/* Body and html styling */
+html,
+body {
+  height: 100%; /* Ensures the body stretches to the full height */
+  margin: 0; /* Removes default margin */
+}
+
+/* Wrapper for the entire page */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures the page content fills at least the full height */
+}
+
+/* Main content */
+.main-content {
+  flex: 1; /* Allows the content to grow and push the footer down */
+}
+
+/* Footer container */
+footer {
+  background-color: #f1f1f1; /* Light gray background */
+  color: #333; /* Dark text color */
+  text-align: center;
+  padding: 1.5rem 0; /* Extra padding for better spacing */
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow at the top */
+  font-family: 'Arial', sans-serif; /* Clean font */
+}
+
+/* Highlighted quote styling */
+footer p:first-child {
+  font-style: italic;
+  font-size: 1.2rem; /* Larger font size */
+  font-weight: bold; /* Bold text to emphasize */
+  color: #6c5ce7; /* Eye-catching purple */
+  margin-bottom: 0.8rem; /* Space below the quote */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+}
+
+/* Copyright styling */
+footer p:last-child {
+  font-size: 0.85rem;
+  color: #666; /* Subtle gray */
+  margin: 0;
+}
+
+  

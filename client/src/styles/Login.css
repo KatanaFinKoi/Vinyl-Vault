@@ -1,0 +1,172 @@
+/* Container for the entire login page */
+.login-container {
+    display: flex;
+    justify-content: center; /* Center the form and image sections */
+    align-items: center;
+    width: 100%;
+    height: 100vh; /* Full height of the viewport */
+    background-color: #f9f9f9; /* Light gray background */
+  }
+  
+  /* Form Section */
+  .form-section {
+    flex: 1; /* Take up equal space with the image section */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow around the form */
+    height: 90%; /* Slightly smaller than the full height */
+    max-width: 600px; /* Limit the width of the form section */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  /* Form Title */
+  .form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2d3436; /* Dark gray */
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Form Subtitle */
+  .form-subtitle {
+    font-size: 1rem;
+    color: gray;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Input Fields */
+  label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    display: block;
+    color: #2d3436;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for floating effect */
+    font-size: 1rem;
+  }
+  
+  input:focus {
+    outline: none;
+    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.5); /* Stronger shadow on focus */
+  }
+  
+  /* Forgot Password Link */
+  .forgot-password-link {
+    font-size: 0.9rem;
+    color: #3b82f6; /* Blue text */
+    text-decoration: none;
+    margin-bottom: 30px;
+  }
+  
+  .forgot-password-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Submit Button */
+  .submit-button {
+    width: 100%;
+    background-color: #6c5ce7; /* Purple */
+    color: white;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #5b3ca5; /* Slightly darker purple */
+  }
+  
+  /* Alternative Login Section */
+  .alternative-login {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .social-login {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .google-button,
+  .facebook-button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .google-button:hover,
+  .facebook-button:hover {
+    background-color: #f5f5f5; /* Light gray hover effect */
+  }
+  
+  /* Create Account Section */
+  .create-account-section {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .sign-up-link {
+    color: #3b82f6; /* Blue link */
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .sign-up-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Image Section */
+  .image-section {
+    flex: 1; /* Take up equal space with the form section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../assets/VinylPlayer.jpg') no-repeat center center; /* Replace with your actual image path */
+    background-size: 140%; /* Ensure the image covers the entire section */
+    background-position: center;
+    height: 100%;
+    border-radius: 10px; /* Optional: keep the rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Optional: shadow around the section */
+  }
+  
+  
+  .login-image {
+    width: 80%;
+    max-width: 500px; /* Limit the image size */
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Shadow around the image */
+  }
+  
+  /* Footer Section */
+  .footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f5f5f5; /* Light gray */
+    font-size: 0.9rem;
+    color: gray;
+  }
+  

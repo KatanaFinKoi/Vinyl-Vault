@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {useParams, useNavigate } from 'react-router-dom';
 import { deleteAlbum, fetchAlbumById, Album } from '../api/albumAPI';
 import DeezerPlayer from '../components/deezer';
+import '../styles/albumDetails.css';
 
 
 const AlbumDetails = () => {
@@ -37,19 +38,27 @@ const AlbumDetails = () => {
 
     return (
         <div className="album-details-page">
-            <img
-                src={album.cover_image}
-                alt={`Cover of ${album.title}`}
-                className="album-cover"
-            />
-            <h2>{album.title}</h2>
-            <p>Released Year: {album.year}</p>
-            <p>Genre: {album.genre}</p>
-            <p>Label: {album.label}</p>
-            <button onClick={handleDelete} className="delete-button">
+            <div className='album-header'>
+                <img
+                    src={album.cover_image}
+                    alt={`Cover of ${album.title}`}
+                    className="album-cover"
+                />
+                <div className='album-info'>
+                    <h2>{album.title}</h2>
+                    <p>Released Year: {album.year}</p>
+                    <p>Genre: {album.genre}</p>
+                    <p>Label: {album.label}</p>
+                </div>
+            </div>
+            <div className='album-actions'>
+                <button onClick={handleDelete} className="delete-button">
                 Delete Album
-            </button>
-            <DeezerPlayer albumTitle={album.title} />
+                </button>
+            </div>
+            <div className='deezer-player'>
+                <DeezerPlayer albumTitle={album.title} />
+            </div>
         </div>    
     );
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../utils/auth';
 import VinylLogo from '../assets/VinylLogo.png';
+import '../styles/Navbar.css';
 
 const Navbar = () => {
   const [loginCheck, setLoginCheck] = useState(false);
@@ -28,49 +29,57 @@ const Navbar = () => {
   };
 
   return (
-    <div className='nav'>
-     <div className="nav-title">
-        {/* Vinyl Logo as the home button */}
+    <div className="nav">
+      {/* Navbar title section */}
+      <div className="nav-title">
+        {/* Vinyl Logo */}
         <img
           src={VinylLogo}
           className="VinylLogo"
           alt="Vinyl Logo"
-          style={{ cursor: 'pointer' }}
           onClick={handleLogoClick}
         />
-        {/* Navigation buttons next to the logo */}
+        <h2>Vinyl Vault</h2>
+      </div>
+  
+      {/* Navbar buttons section */}
+      <div className="nav-buttons">
+        {/* Show Add Album and Collection buttons if logged in */}
         {loginCheck && (
-          <div className="nav-buttons" style={{ display: 'inline-block', marginLeft: '20px' }}>
+          <>
             <button
               type="button"
-              style={{ marginRight: '10px' }}
-              onClick={() => navigate('/search-album')}
+              className="album-button"
+              onClick={() => navigate("/search-album")}
             >
               Add Album
             </button>
-            <button type="button" onClick={() => navigate('/my-collection')}>
+            <button
+              type="button"
+              className="collection-button"
+              onClick={() => navigate("/my-collection")}
+            >
               Collection
             </button>
-          </div>
+          </>
+        )}
+  
+        {/* Login or Logout button */}
+        {!loginCheck ? (
+          <button type="button" className="login-button">
+            Login
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="logout-button"
+            onClick={() => auth.logout()}
+          >
+            Logout
+          </button>
         )}
       </div>
-      <ul>
-        {!loginCheck ? (
-          <li className='nav-item'>
-            <button type='button'>
-              <Link to='/'>Login</Link>
-            </button>
-          </li>
-        ) : (
-          <li className='nav-item'>
-            <button type='button' onClick={() => auth.logout()}>
-              Logout
-            </button>
-          </li>
-        )}
-      </ul>
     </div>
   );
-};
-
+}  
 export default Navbar;

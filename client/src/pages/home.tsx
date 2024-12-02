@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // import AddAlbumForm from '../components/AddAlbumForm';
 // import SpotifySearch from '../components/SpotifySearch';
 import VinylVaultLogo from '../assets/VinylVaultLogo.png';
+import '../styles/home.css';
 
 
 const Home = () => {
@@ -13,30 +14,26 @@ const Home = () => {
     };
 
   return (
-    <div className="mx-auto w-fit bg-gray-800 text-center rounded-lg p-6">
-      <h1 className="text-white font-bold text-3xl py-4"><img src={VinylVaultLogo} className="VinylVaultLogo"/></h1>
-      <p className="text-white text-lg mb-6">
+    <div className="home-container">
+      <h1>
+        <img src={VinylVaultLogo} className="VinylVaultLogo" alt='Vinyl Vault Logo'/>
+      </h1>
+      <p>
         Organize and showcase your record collection in one place.
       </p>
-      <div className="flex flex-col sm:flex-row justify-around space-y-6 sm:space-y-0 sm:space-x-6">
+      <div className="flex">
         {/* Add Album Section */}
-        <div className="flex flex-col items-center bg-gray-700 p-6 rounded">
-            <Link 
-            to ="/search-album"
-            >
-              <h2 className="text-white font-medium text-lg mb-4">Add an Album Manually</h2>
+        <div className="add-album-section">
+            <Link to ="/search-album">
+              <h2>Add an Album Manually</h2>
             </Link>
-          {/* <AddAlbumForm /> */}
         </div>
-      </div>
 
-      <div className="mt-6">
-        <Link
-          to="/my-collection"
-          className="bg-amber-500 hover:bg-amber-600 text-black font-bold py-2 px-6 rounded"
-        >
-          View My Collection
-        </Link>
+          <Link
+            to="/my-collection"
+            className="collection-button">
+            View My Collection
+          </Link>
       </div>
     </div>
   );

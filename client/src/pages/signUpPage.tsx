@@ -38,35 +38,35 @@ const SignUp = () => {
     };
 
     return (
-        <div className="container">
-            <form className="form" onSubmit={handleSubmit}>
-                <h1>Sign Up</h1>
-                {errorMessage && (
-                    <p className="error-message" style={{ color: 'red' }}>
-                        {errorMessage}
-                    </p>
-                )}
-                <label>Username</label>
-                <input
-                    type="text"
-                    name="username"
-                    value={signUpData.username}
-                    onChange={handleChange}
-                    required
-                />
-                <label>Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    value={signUpData.password}
-                    onChange={handleChange}
-                    required
-                />
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? 'Creating account...' : 'Sign Up'}
-                </button>
-            </form>
-        </div>
+    <div className="sign-up-container">
+      <form className="sign-up-form" onSubmit={handleSubmit}>
+        <h1 className="form-title">Sign Up</h1>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value={signUpData.username}
+          onChange={handleChange}
+          placeholder="Enter your username"
+          required
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={signUpData.password}
+          onChange={handleChange}
+          placeholder="Enter your password"
+          required
+        />
+        <button type="submit" className="submit-button" disabled={isLoading}>
+          {isLoading ? 'Creating account...' : 'Sign Up'}
+        </button>
+      </form>
+    </div>    
     );
 };
 

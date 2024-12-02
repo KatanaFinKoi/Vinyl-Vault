@@ -1,0 +1,118 @@
+/* General Container Styles */
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #1f2937, #3b4252); /* Refined dark gradient */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    color: white;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Vinyl Vault Logo */
+  .VinylVaultLogo {
+    max-width: 150px;
+    height: auto;
+    margin: 0 auto 20px; /* Center the logo */
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5)); /* Add shadow effect */
+  }
+  
+  /* Headline */
+  .home-container h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #e5e7eb; /* Slightly lighter text */
+  }
+  
+  .home-container h1 img {
+    margin-bottom: 10px;
+  }
+  
+  /* Subtitle */
+  .home-container p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #d1d5db; /* Light gray */
+  }
+  
+  /* Add Album Section */
+  .add-album-section {
+    background: #374151; /* Slightly lighter gray */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .add-album-section:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+  }
+  
+  .add-album-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    color: #f9fafb; /* White text */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  
+  .add-album-section a {
+    text-decoration: none;
+    color: #93c5fd; /* Blue link color */
+  }
+  
+  .add-album-section a:hover {
+    text-decoration: underline;
+    color: #60a5fa; /* Bright blue hover */
+  }
+  
+  /* Collection Button */
+  .collection-button {
+    background: #f59e0b; /* Amber button color */
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 30px; /* Create space between Add Album and Collection button */
+  }
+  
+  .collection-button:hover {
+    background: #d97706; /* Darker amber */
+    transform: translateY(-3px); /* Slight lift on hover */
+  }
+  
+  /* Spacing between sections */
+  .home-container .flex {
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    gap: 30px; /* Space between Add Album and View My Collection button */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .home-container {
+      padding: 20px;
+    }
+  
+    .home-container h1 {
+      font-size: 2.5rem;
+    }
+  
+    .collection-button {
+      font-size: 1rem;
+      padding: 10px 16px;
+    }
+  }
+  
+  

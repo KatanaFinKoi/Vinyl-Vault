@@ -2,14 +2,15 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import Auth from '../utils/auth';
 import { login } from "../api/authAPI";
+import "../styles/Login.css";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
-    username: '',
-    password: ''
+    username: "",
+    password: "",
   });
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -18,69 +19,84 @@ const Login = () => {
     const { name, value } = e.target;
     setLoginData({
       ...loginData,
-      [name]: value
+      [name]: value,
     });
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const data = await login(loginData);
       Auth.login(data.token);
-      navigate('/home');
+      navigate("/home");
     } catch (err: any) {
-      setErrorMessage(err || 'Username or password is incorrect');
-      console.error('Failed to login', err);
+      setErrorMessage(err || "Username or password is incorrect");
+      console.error("Failed to login", err);
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Declare handleCreateAccount function
   const handleCreateAccount = () => {
-    navigate('/signUpPage');
+    navigate("/signUpPage");
   };
 
   return (
-    <div className='container'>
-      <form className='form' onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        {errorMessage && <p className='error-message' style={{ color: 'red'}}>{errorMessage}</p>}
-        <label >Username</label>
-        <input 
-          type='text'
-          name='username'
-          value={loginData.username || ''}
-          onChange={handleChange}
-        />
-      <label>Password</label>
-        <input 
-          type='password'
-          name='password'
-          value={loginData.password || ''}
-          onChange={handleChange}
-        />
-        <button type='submit' disabled={isLoading}>{isLoading? 'Logging in...': 'Submit'}</button>
-      </form>
+    <div className="login-container">
+      <div className="form-section">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <h1 className="form-title">Log In</h1>
+          <p className="form-subtitle">Welcome back! Please enter your details.</p>
 
-      <div style={{ marginTop: '20px'}}>
-        <p>Don't have an account?</p>
-        <button
-         onClick={handleCreateAccount}
-         style={{
-           backgroundColor: 'transparent',
-           padding: '10px 20px',
-           border: 'none',
-            cursor: 'pointer',
-            color: 'blue',
-            borderRadius: '5px'
-         }}
-         >
-            Create Account
-         </button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="username"
+            value={loginData.username || ""}
+            onChange={handleChange}
+            placeholder="Enter your email"
+          />
+
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={loginData.password || ""}
+            onChange={handleChange}
+            placeholder="Enter your password"
+          />
+          <a href="/forgot-password" className="forgot-password-link">
+            Forgot password?
+          </a>
+
+          <button type="submit" className="submit-button" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Log In"}
+          </button>
+        </form>
+
+        <div className="create-account-section">
+          <p className="no-acc">
+            Don't have an account?{" "}
+            <a href="/signUpPage" className="sign-up-link" onClick={handleCreateAccount}>
+              Sign up
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div className="image-section">
+        <img
+          className="login-image"
+        />
       </div>
     </div>
-    
-  )
+  );
 };
 
 export default Login;

@@ -1,0 +1,96 @@
+.sign-up-container {
+    display: flex;
+    justify-content: center; /* Horizontally center the form */
+    align-items: center; /* Vertically center the form */
+    height: 100vh; /* Full viewport height */
+    background: linear-gradient(to bottom, #f9f9f9, #ececec); /* Subtle gradient background */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Sign-up form */
+  .sign-up-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 100%;
+    max-width: 400px; /* Ensure consistent size */
+    box-sizing: border-box;
+    text-align: center; /* Center-align text */
+  }
+  
+  /* Form title */
+  .form-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333; /* Dark gray text */
+    margin-bottom: 20px;
+  }
+  
+  /* Error message */
+  .error-message {
+    color: #d32f2f; /* Red color for errors */
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Labels */
+  label {
+    display: block;
+    text-align: left; /* Align labels to the left */
+    font-size: 1rem;
+    color: #555; /* Medium gray text */
+    margin-bottom: 5px;
+  }
+  
+  /* Input fields */
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #6c63ff; /* Accent purple for focus */
+    outline: none;
+  }
+  
+  /* Submit button */
+  .submit-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #6c63ff; /* Vibrant purple */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #594adb; /* Darker purple for hover */
+    transform: translateY(-2px); /* Slight elevation on hover */
+  }
+  
+  .submit-button:disabled {
+    background-color: #ccc; /* Gray background when disabled */
+    cursor: not-allowed;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .sign-up-form {
+      padding: 30px;
+    }
+  
+    .form-title {
+      font-size: 1.8rem;
+    }
+  }

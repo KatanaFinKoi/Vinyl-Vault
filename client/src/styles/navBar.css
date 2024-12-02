@@ -1,0 +1,96 @@
+/* Navbar container */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+/* Navbar title (logo + title) */
+.nav-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.VinylLogo {
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.VinylLogo:hover {
+  transform: scale(1.1);
+}
+
+.nav-title h2 {
+  font-size: 1.5rem;
+  color: #2d3436;
+  margin: 0;
+}
+
+/* Navbar buttons container */
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Shared button styles */
+.nav-buttons button {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Add Album and Collection buttons */
+.nav-buttons .album-button,
+.nav-buttons .collection-button {
+  background-color: #34c759; /* Green background */
+  color: white;
+  border: none;
+}
+
+.nav-buttons .album-button:hover,
+.nav-buttons .collection-button:hover {
+  background-color: #28a745; /* Darker green on hover */
+  transform: translateY(-2px);
+}
+
+/* Logout button */
+.nav-buttons .logout-button {
+  background-color: transparent;
+  border: 2px solid #ff3b30; /* Red border */
+  color: #ff3b30; /* Red text */
+}
+
+.nav-buttons .logout-button:hover {
+  background-color: #ff3b30; /* Red background on hover */
+  color: white;
+}
+
+/* Login button */
+.nav-buttons .login-button {
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+}
+
+.nav-buttons .login-button:hover {
+  background-color: #5b3ca5;
+  transform: translateY(-2px);
+}
+
