@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import auth from '../utils/auth';
 import VinylLogo from '../assets/VinylLogo.png';
-import '../styles/Navbar.css';
+import '../styles/navBar.css';
 
 const Navbar = () => {
   const [loginCheck, setLoginCheck] = useState(false);
