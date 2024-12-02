@@ -65,19 +65,16 @@ const Navbar = () => {
         )}
   
         {/* Login or Logout button */}
-        {!loginCheck ? (
-          <button type="button" className="login-button">
-            Login
-          </button>
-        ) : (
+        {loginCheck && (
           <button
             type="button"
             className="logout-button"
             onClick={() => auth.logout()}
-          >
+            >
             Logout
-          </button>
-        )}
+            </button>
+          )}
+
       </div>
     </div>
   );
