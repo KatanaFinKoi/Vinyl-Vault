@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { fetchUserAlbums, Album} from '../api/albumAPI'
+import '../styles/myCollection.css'
 
 
 const MyCollection: React.FC = () => {
@@ -32,9 +33,9 @@ const MyCollection: React.FC = () => {
 
     return (
         <div className="my-collection">
-            <h2>My Album Collection</h2>
+            <h2 className='collection-title'>My Album Collection</h2>
             {albums.length === 0 ? (
-                <p>No albums in your collection yet.</p>
+                <p className='empty-collection'>No albums in your collection yet.</p>
             ) : (
                 <div className="album-grid">
                     {albums.map(album => (
@@ -44,7 +45,9 @@ const MyCollection: React.FC = () => {
                                 alt={`Cover of ${album.title}`} 
                                 className="album-cover"
                                 onClick={() => handleImageClick(album.id)}
-                            />                     
+                            />
+                            <p className='album-title'>{album.title}</p>
+                            <p className='album-year'>{album.year}</p>                     
                         </div>                      
                     ))}
                 </div>

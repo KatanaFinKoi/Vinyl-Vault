@@ -1,4 +1,6 @@
 import { useEffect, useState} from 'react'
+import '../styles/footer.css'
+
 const Footer = () => {
     const [quote, setQuote] = useState('')
 
@@ -15,10 +17,9 @@ const Footer = () => {
     fetchQuote()
     }, [])
     return (
-      <footer style={{ textAlign: 'center', padding: '1rem', backgroundColor: '#f1f1f1' }}>
+      <footer>
         <p>"{quote}" </p> 
-        <p>© 2024 Vinyl Vault. All rights reserved.</p>
-        
+        <p>© 2024 Vinyl Vault. All rights reserved.</p> 
       </footer>
     );
   };

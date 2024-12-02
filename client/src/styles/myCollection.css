@@ -1,0 +1,98 @@
+/* Main Container */
+.my-collection {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #121212; /* Dark theme background */
+    min-height: 100vh;
+}
+
+/* Collection Title */
+.collection-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+/* Album Grid */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+/* Album Card */
+.album-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.album-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Album Cover */
+.album-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Album Title */
+.album-title {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Album Year */
+.album-year {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    text-align: center;
+}
+
+/* Empty Collection */
+.empty-collection {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #b3b3b3;
+    margin-top: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .collection-title {
+        font-size: 2rem;
+    }
+
+    .album-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .album-card {
+        padding: 8px;
+    }
+
+    .album-title {
+        font-size: 0.9rem;
+    }
+
+    .album-year {
+        font-size: 0.8rem;
+    }
+}
