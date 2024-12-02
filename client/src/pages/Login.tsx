@@ -71,9 +71,6 @@ const Login = () => {
             onChange={handleChange}
             placeholder="Enter your password"
           />
-          <a href="/forgot-password" className="forgot-password-link">
-            Forgot password?
-          </a>
 
           <button type="submit" className="submit-button" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Log In"}
