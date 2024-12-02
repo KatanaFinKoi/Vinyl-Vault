@@ -23,10 +23,12 @@ const Layout = () => (
 function App() {
   const navigate = useNavigate();
 
-  // Redirect to /home if logged in
+  // Redirect logic
   useEffect(() => {
     if (auth.loggedIn()) {
-      navigate('/home'); // Redirect to /home
+      navigate('/home'); // Redirect to /home if logged in
+    } else if (window.location.pathname === '/signUpPage') {
+      navigate('/signUpPage'); // Allow access to the sign-up page
     } else {
       navigate('/'); // Redirect to login page
     }
