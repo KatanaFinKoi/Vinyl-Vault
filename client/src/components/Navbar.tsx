@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import auth from '../utils/auth';
 import VinylLogo from '../assets/VinylLogo.png';
 import '../styles/Navbar.css';

@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 // import AddAlbumForm from '../components/AddAlbumForm';
 // import SpotifySearch from '../components/SpotifySearch';
 import VinylVaultLogo from '../assets/VinylVaultLogo.png';
@@ -7,11 +7,11 @@ import '../styles/home.css';
 
 
 const Home = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
-    const goToCollection = () => {
-      navigate('/my-collection');
-    };
+  //   const goToCollection = () => {
+  //     navigate('/my-collection');
+  //   };
 
   return (
     <div className="home-container">
