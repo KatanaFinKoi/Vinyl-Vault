@@ -7,7 +7,8 @@ A comprehensive vinyl collection tracker designed to help users organize and sho
 - Add and manage your vinyl collection effortlessly.
 - Display detailed record information including artist, album, release date, and more.
 - Integrates with the **Discogs API** for up-to-date record details.
-- Includes fun and unique features powered by the **Kanye.rest API**.
+- Includes fun and unique daily quotes powered by the **Kanye.rest API**.
+- Incorporates **Deezer API** for a built in music player to preview albums.
 
 ## Built With
 
@@ -21,6 +22,7 @@ Vinyl Vault is developed using a robust and modern tech stack:
 - **Bootstrap**: Styling and layout for a sleek and responsive design.
 - **Discogs API**: Fetching comprehensive vinyl record information.
 - **Kanye.rest API**: Adding a creative and fun twist with Kanye quotes.
+- **Deezer API**: Allowing the user to preview their albums.
 
 ## Authors
 
