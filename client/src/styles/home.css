@@ -1,5 +1,6 @@
 /* General Container Styles */
 .home-container {
+    min-height: 100vh;
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
@@ -83,7 +84,7 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 30px; /* Create space between Add Album and Collection button */
+    
   }
   
   .collection-button:hover {

@@ -1,3 +1,5 @@
+
+
 .sign-up-container {
     display: flex;
     justify-content: center; /* Horizontally center the form */
@@ -6,6 +8,7 @@
     background: linear-gradient(to bottom, #f9f9f9, #ececec); /* Subtle gradient background */
     padding: 20px;
     box-sizing: border-box;
+    
   }
   
   /* Sign-up form */

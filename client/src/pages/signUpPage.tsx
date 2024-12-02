@@ -1,6 +1,7 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom"; // For navigation after sign-up
 import { signup } from "../api/signUpAPI";
+import '../styles/singUpPage.css'
 
 const SignUp = () => {
     const [signUpData, setSignUpData] = useState({
@@ -44,12 +45,12 @@ const SignUp = () => {
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <label htmlFor="username">Username</label>
         <input
-          type="text"
-          id="username"
+          type="email"
+          id="email"
           name="username"
           value={signUpData.username}
           onChange={handleChange}
-          placeholder="Enter your username"
+          placeholder="Enter your email"
           required
         />
         <label htmlFor="password">Password</label>

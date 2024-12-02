@@ -20,10 +20,10 @@
   
   /* Search Bar */
   .search-bar {
-    display: flex;
-    align-items: center;
+    
     margin-bottom: 30px;
     gap: 10px;
+    
   }
   
   .search-input {
@@ -33,6 +33,8 @@
     border-radius: 8px;
     width: 300px;
     outline: none;
+    margin-right: 10px;
+    
   }
   
   .search-button {
@@ -44,6 +46,7 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
+    
   }
   
   .search-button:hover {
