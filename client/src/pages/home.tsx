@@ -7,11 +7,6 @@ import '../styles/home.css';
 
 
 const Home = () => {
-  // const navigate = useNavigate();
-  
-  //   const goToCollection = () => {
-  //     navigate('/my-collection');
-  //   };
 
   return (
     <div className="home-container">
