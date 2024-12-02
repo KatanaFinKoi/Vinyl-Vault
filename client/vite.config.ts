@@ -1,10 +1,7 @@
 import { defineConfig } from 'vite';
-
-// https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    host: "0.0.0.0",
-    port: parseInt(process.env.PORT || '3001'),
+    port: 3000,
     open: true,
     proxy: {
       '/api': {
