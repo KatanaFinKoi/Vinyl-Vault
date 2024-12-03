@@ -43,7 +43,7 @@ const SignUp = () => {
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <h1 className="form-title">Sign Up</h1>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username">Email</label>
         <input
           type="email"
           id="email"

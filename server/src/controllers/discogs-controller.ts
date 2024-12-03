@@ -2,10 +2,10 @@
 import { Request, Response } from 'express';
 import { searchAlbums, getAlbumDetails } from '../models/discogs.js';
 
-console.log('discogs controller');
+
 
 export const searchAlbumsController = async (req: Request, res: Response) => {
-    console.log('searchAlbumsController7');
+    
     const { albumName } = req.query;
 
     if (!albumName || typeof albumName !=='string') {
@@ -23,7 +23,7 @@ export const searchAlbumsController = async (req: Request, res: Response) => {
 
 
 export const getAlbumDetailsController = async (req: Request, res: Response) => {
-    console.log('getAlbumDetailsController25');
+    
     const { albumId } = req.params;
 
     if (!albumId) {
