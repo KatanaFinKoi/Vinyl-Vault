@@ -94,3 +94,25 @@
   transform: translateY(-2px);
 }
 
+@media (max-width: 768px) {
+  /* Hide the title on smaller screens */
+  .nav-title h2 {
+    display: none;
+  }
+
+  /* Adjust buttons to fit within the screen */
+  .nav-buttons {
+    flex-wrap: wrap;
+    gap: 10px; /* Reduced gap for tighter spacing */
+  }
+
+  .nav-buttons button {
+    flex: 1 1 calc(50% - 10px); /* Two buttons per row with some spacing */
+    padding: 8px 10px; /* Smaller padding for buttons */
+    font-size: 0.9rem; /* Slightly smaller font size */
+  }
+
+  .VinylLogo {
+    width: 40px; /* Smaller logo for mobile */
+  }
+}
