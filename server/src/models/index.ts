@@ -6,8 +6,13 @@ import { UserFactory } from './user.js';
 import { AlbumFactory } from './albums.js';
 
 // Use the Neon connection string
+const dbUrl = process.env.DB_URL;
+if (!dbUrl) {
+  throw new Error('DB_URL is not defined in the environment variables');
+}
+
 const sequelize = new Sequelize(
-  process.env.DB_URL || 'postgresql://vinyl-vault-db_owner:xDtXH3oTNhv8@ep-weathered-bush-a5wr0ab6.us-east-2.aws.neon.tech/vinyl-vault-db?sslmode=require',
+  dbUrl,
   {
     dialect: 'postgres',
     dialectOptions: {
